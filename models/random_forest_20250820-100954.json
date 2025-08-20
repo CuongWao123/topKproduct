@@ -1,0 +1,18 @@
+{
+  "model_name": "Random Forest",
+  "created_at": "20250820-100954",
+  "sklearn_version": "1.6.1",
+  "targets": [
+    "current_accounts_final_label",
+    "payroll_accounts_final_label",
+    "junior_accounts_final_label",
+    "more_particular_accounts_final_label",
+    "particular_accounts_final_label",
+    "particular_plus_accounts_final_label",
+    "home_account_final_label",
+    "payroll_final_label",
+    "e_account_final_label"
+  ],
+  "train_accuracy": 0.9508962451664197,
+  "training_time_s": 81.67846989631653
+}

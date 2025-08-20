@@ -1,0 +1,18 @@
+{
+  "model_name": "LightGBM",
+  "created_at": "20250820-101436",
+  "sklearn_version": "1.6.1",
+  "targets": [
+    "current_accounts_final_label",
+    "payroll_accounts_final_label",
+    "junior_accounts_final_label",
+    "more_particular_accounts_final_label",
+    "particular_accounts_final_label",
+    "particular_plus_accounts_final_label",
+    "home_account_final_label",
+    "payroll_final_label",
+    "e_account_final_label"
+  ],
+  "train_accuracy": 0.9398309602110513,
+  "training_time_s": 7.048110008239746
+}
