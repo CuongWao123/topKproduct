@@ -72,11 +72,13 @@ def top2_from_proba(y_proba_batch, tar_cols):
             p1 = float(proba_ij[1]) if getattr(proba_ij, 'shape', None) and len(proba_ij) > 1 else float(proba_ij[0])
             scores.append((product, p1))
         scores.sort(key=lambda x: x[1], reverse=True)
-        top2 = [p for p, _ in scores[:2]]
+        top2 = scores[:2]
+        # nếu thiếu thì padding
         if len(top2) < 2:
-            top2 += [''] * (2 - len(top2))
-        out.append((top2[0], top2[1]))
+            top2 += [("", 0.0)] * (2 - len(top2))
+        out.append(top2)
     return out
+
 
 
 exclude_features = [
@@ -138,8 +140,9 @@ for msg in consumer:
     try:
         y_proba_batch = loaded_pipeline.predict_proba(X)
         top2_batch = top2_from_proba(y_proba_batch, tar_cols)
-        for i, (rec1, rec2) in enumerate(top2_batch):
+        for i, [(rec1, prob1), (rec2, prob2)] in enumerate(top2_batch):
             cid = customer_ids.iloc[i]
-            print(f"🔮 customer_id={cid} → rec1={rec1}, rec2={rec2}")
+            print(f"🔮 customer_id={cid} → rec1={rec1} ({prob1:.4f}), rec2={rec2} ({prob2:.4f})")
     except Exception as e:
         print(f"⚠️ Lỗi khi dự đoán: {e}")
+
